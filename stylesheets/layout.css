@@ -1,0 +1,246 @@
+
+/* Table of Content
+==================================================
+	#Site Styles
+	#Page Styles
+	#Media Queries
+	#Font-Face */
+
+/* #Site Styles
+================================================== */
+body { background-color: #ffffff; }
+
+	body *{
+		font-family: 'Open Sans', sans-serif;
+	}
+
+header {
+	padding: 20px 10px 10px 10px;
+}
+	header span{
+		color: #085BFD;
+	}
+
+	header ul { 
+		margin-top: 10px;
+		float: right; 
+		margin-right: 10px;
+	}
+
+	header ul li h5{
+		margin-left: 10px;
+		color: #AAA;
+	}
+
+	header * {
+		display: inline-block;		 
+	}
+
+.shadow {
+	 box-shadow: 0px 3px 4px rgba(0,0,0,0.1); 
+}
+
+.content { min-height: 600px; }
+
+.link-soft { 	
+	margin-bottom: 10px;
+	text-decoration: none;
+	color: #AAA !important;
+	font-size: 1.2em;
+	margin-right: 10px;
+}
+
+.hr-soft {
+	margin-bottom: 5px;
+}
+
+.inline { display: inline-block; }
+
+.inline-top { display: inline-block; vertical-align: top; }
+
+
+/* Forms 
+=========================================== */
+input[type="submit"] {
+	min-width: 100px;
+	font-size: 0.9em;
+}
+
+select { height: 31px;}
+
+textarea { 
+	width: 435px;
+	height: 200px;
+	font-size: 1em;
+}
+
+label { font-size: 1em; margin-bottom: 4px; }
+
+.btn-light,
+.btn-light:hover {
+	padding: 10px 20px 10px 20px ;
+	font-size: 1em;
+	background: #ffffff !important;
+}
+
+/* #Page Styles
+================================================== */
+
+
+/* Cadastro */
+#cadastro {
+	margin-left: 10px;
+}
+
+.radio-male,
+.radio-female{
+	display: inline-block;
+}
+
+input[name="nome"] {
+	width: 350px;
+}
+
+/* tabs */
+#tabs ul li{
+	display: inline-block;
+	vertical-align: top;
+	min-width: 100px;
+	height: 20px;
+	padding: 10px;
+	
+	background-color: #ffffff;
+	color: rgba(0,0,0,0.5);
+	
+	font-size: 1.2em;
+	text-align: center;
+	cursor: pointer;
+
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;	
+	margin-right: 3px;
+	margin-left: 1px;
+	box-shadow: 0px -2px 2px rgba(0,0,0,0.1);
+}
+
+.tab-open {	
+	color: rgba(0,0,0,0.8) !important;
+	box-shadow: 0px 1px 0px #ffffff, 0px -2px 2px rgba(0,0,0,0.1) !important;	
+}
+
+.tab-close {
+}
+
+#tab-content {
+	padding: 10px;
+	border: 1px solid rgba(0,0,0,0.1);
+	min-height: 300px;
+}
+
+#novo-ticket {
+	display: block;
+	float: right;
+	padding: 10px 20px 10px 20px ;
+	font-size: 1em;
+	background: #ffffff;
+}
+
+table {
+	width: 100%;
+	border:1px solid #E9E9E9;
+	border-bottom: 2px solid #E9E9E9;
+	font-size: 1em;
+}
+
+
+td,th {
+	text-align: left;
+	height: 30px;
+	padding: 10px 10px 0px 10px;
+	border-bottom: 1px solid #E9E9E9;
+}
+
+td i {
+	margin-right: 8px;
+}
+
+/* Novo ticket page */
+#anexar {
+	width: 100%;
+	padding: 10px 20px 10px 20px;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+
+	#anexar p { display: inline-block; margin-left: 10px;}
+
+/* Novo ticket sucesso */	
+.soft {
+	color: rgba(0,0,0,0.5) !important;
+}
+
+#big-letter {
+	font-size: 1.2em ;
+}
+
+/* Visualizar ticket*/
+.info-ticket {
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px;
+}
+
+#history {
+	padding: 10px;
+	width: 100%;
+	border: 1px solid rgba(0,0,0,0.1);
+}
+	#history li {
+		font-size: 1.1em;
+		padding-top: 5px;
+		height: 25px;
+		border-bottom: 1px solid rgba(0,0,0,0.1);
+	}
+	#history li:last-child {
+		border-bottom: 0px solid rgba(0,0,0,0.1);
+	}
+	#msg,#note {
+		width: 99%;
+		font-size: 1.2em;		
+	}
+
+/* #Media Queries
+================================================== */
+
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {}
+
+	/* Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {}
+
+	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {}
+
+
+/* #Font-Face
+================================================== */
+/* 	This is the proper syntax for an @font-face file
+		Just create a "fonts" folder at the root,
+		copy your FontName into code below and remove
+		comment brackets */
+
+/*	@font-face {
+	    font-family: 'FontName';
+	    src: url('../fonts/FontName.eot');
+	    src: url('../fonts/FontName.eot?iefix') format('eot'),
+	         url('../fonts/FontName.woff') format('woff'),
+	         url('../fonts/FontName.ttf') format('truetype'),
+	         url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
+	    font-weight: normal;
+	    font-style: normal; }
+*/

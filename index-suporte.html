@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="pt"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="pt"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="pt"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="pt"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Open Ticket</title>
+	<meta name="description" content="">
+	<meta name="author" content="Matheus ">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/1140.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+
+
+  <!-- Fonts
+  ================================================= -->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- javascript
+  ================================================= -->
+  <script src="./javascripts/jquery.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>	
+<div class="container12">
+	<div class="column12">
+		<header>
+			<h2> Open <span>Ticket<span></h2>
+			<ul>
+				<a href="./index.html">
+					<li><h5><i class="fa fa-home"></i> HOME</h5></li>
+				</a>
+
+				<a href="">
+					<li><h5><i class="fa fa-eye"></i> DASHBOARD</h5></li>
+				</a>
+
+				<a href="./index.html">
+					<li><h5><i class="fa fa-sign-out"></i>SAIR</h5></li>
+				</a>
+			</ul>					
+		</header>
+		<hr class="shadow">
+
+	</div>
+
+	<div class="column12">
+
+		<h3 class="inline"> Tickets abertos</h3>
+
+		<br><br>
+			
+		<div id="tabs">
+			<ul>
+				<li id="novos" class="tab-open tab">Novos</li>
+				<li id="em-andamento" class="tab-close tab">Em andamento</li>
+				<li id="encerrados" class="tab-close tab">Encerrados</li>
+			</ul>
+		</div>
+		<div id="tab-content">
+			<!-- o contéudo será carregado aqui -->
+		</div>
+
+
+	</div>
+	
+</div><!-- container 12-->	
+
+<!-- End Document
+================================================== -->
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		/* Função para mudar os estados das tabs quando o evento click for acionado. */
+		$(".tab").click(function(){
+			$(".tab").removeClass("tab-open");
+			$(".tab").addClass("tab-close");
+
+			$(this).removeClass("tab-close");
+			$(this).addClass("tab-open");
+		});
+
+		/* Quando o evento click for acionado pela primeira aba a função abaixo tera a tarefa de carregar o layout especifico dela.*/
+		$("#em-andamento").click(function(){
+			$.ajax({
+            	url : "./layouts/_ tickets_suporte.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);
+	                getAndamentoJson();
+            	}
+            });
+		});
+
+		/* Quando o evento click for acionado pela segunda aba a função abaixo tera a tarefa de carregar o layout especifico dela.*/
+		$("#encerrados").click(function(){
+			$.ajax({
+				/* Está sendo chamado o mesmo layout de andamento porque até então são indênticos */
+            	url : "./layouts/_ tickets_suporte.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);
+	                getEncerradosJson();
+            	}
+            });
+		});
+
+		/* Quando o evento click for acionado pela terceira aba a função abaixo tera a tarefa de carregar o layout especifico dela.*/
+		$("#novos").click(function(){
+			$.ajax({
+				/* Está sendo chamado o mesmo layout de andamento porque até então são indênticos */
+            	url : "./layouts/_ tickets_suporte.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);
+	                getNovosJson();
+            	}
+            });
+		});
+
+		/* Por padrão logo que se inicia ele carrega todo o contéudo de tickets em andamento e o preenche com o json que se encontra em ./ajax/andamento.json*/
+		$.ajax({
+            	url : "./layouts/_ tickets_suporte.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);
+	                getNovosJson();
+            	}
+        });
+
+
+		/* Funções para teste local do front.
+		==============================================================
+		   A função abaixo tem é tarefa de carregar um arquivo json com 
+		   dados sobre tickets em adamento para a aba 1.
+		 */
+
+		function getAndamentoJson(){
+			/* Ao invés de ajax/andamento.json pode ser um link para seu servidor que retorne um json. */
+			$.getJSON( "ajax/andamento_suporte.json", function( data ) {
+				var items = [];
+				
+				$.each( data, function() {
+
+					var str = "<tr>";
+					var url= ""
+					var icon= "<a href=\""+url+"\"><i class=\"fa fa-eye\"></i></a>"
+					str += "<td>"+icon+" "+this.assunto+"</td>";
+					str += "<td>"+this.funcionario+"</td>";
+					str += "<td>"+this.usuario+"</td>";
+					str += "<td>"+this.campus+"</td>";
+					str += "<td>"+this.data+"</td>";
+					str += "</tr>";
+
+					items.push(str);
+				});
+			
+				$("tbody").html(items.join( "" ));
+
+			});
+		}
+
+		function getEncerradosJson(){
+			/* Ao invés de ajax/andamento.json pode ser um link para seu servidor que retorne um json. */
+			$.getJSON( "ajax/encerrados_suporte.json", function( data ) {
+				var items = [];
+				
+				$.each( data, function() {
+
+					var str = "<tr>";
+					var url= ""
+					var icon= "<a href=\""+url+"\"><i class=\"fa fa-eye\"></i></a>"
+					str += "<td>"+icon+" "+this.assunto+"</td>";
+					str += "<td>"+this.funcionario+"</td>";
+					str += "<td>"+this.usuario+"</td>";
+					str += "<td>"+this.campus+"</td>";
+					str += "<td>"+this.data+"</td>";
+					str += "</tr>";
+
+					items.push(str);
+				});
+			
+				$("tbody").html(items.join( "" ));
+
+			});
+		}
+
+		function getNovosJson(){
+			/* Ao invés de ajax/andamento.json pode ser um link para seu servidor que retorne um json. */
+			$.getJSON( "ajax/novos_suporte.json", function( data ) {
+				var items = [];
+				
+				$.each( data, function() {
+
+					var str = "<tr>";
+					var url= ""
+					var icon= "<a href=\""+url+"\"><i class=\"fa fa-eye\"></i></a>"
+					str += "<td>"+icon+" "+this.assunto+"</td>";
+					str += "<td>"+this.funcionario+"</td>";
+					str += "<td>"+this.usuario+"</td>";
+					str += "<td>"+this.campus+"</td>";
+					str += "<td>"+this.data+"</td>";
+					str += "</tr>";
+
+					items.push(str);
+				});
+			
+				$("tbody").html(items.join( "" ));
+
+			});
+		}
+
+	/* fim do $(document).ready();*/
+	});
+
+</script>
+
+</html>

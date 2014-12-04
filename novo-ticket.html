@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="pt"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="pt"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="pt"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="pt"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Open Ticket</title>
+	<meta name="description" content="">
+	<meta name="author" content="Matheus ">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/1140.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+
+
+  <!-- Fonts
+  ================================================= -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- javascript
+  ================================================= -->
+  <script src="./javascripts/jquery.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>	
+<div class="container12">
+	<div class="column12">
+		<header>
+			<h2> Open <span>Ticket<span></h2>
+			<ul>
+				<a href="./index.html">
+					<li><h5><i class="fa fa-home"></i> HOME</h5></li>
+				</a>
+
+				<a href="">
+					<li><h5><i class="fa fa-eye"></i> DASHBOARD</h5></li>
+				</a>
+
+				<a href="./index.html">
+					<li><h5><i class="fa fa-sign-out"></i>SAIR</h5></li>
+				</a>
+			</ul>					
+		</header>
+		<hr class="shadow">
+
+	</div>
+
+	<div class="column7">
+
+		<h3> Novo Ticket</h3>		
+		<br>
+		<form>
+			<div class="inline-top">
+				<label>Assunto</label>
+				<input id="assunto" name="assunto" type="text">
+			</div>
+
+			<div class="inline-top">
+				<label>Setor</label>
+				<select id="setor" name="setor">
+					<option value="matricula">Matricula</option>
+					<option value="manutenção de carros">Manutenção de carros</option>
+					<option value="equipamentos">Equipamentos</option>				
+				</select>
+			</div>
+
+			<label>Mensagem</label>
+			<textarea id="mensagem" name="mensagem"></textarea>
+
+			<button id="enviar" class="btn-light"><i class="fa fa-paper-plane"></i> Enviar</button>
+			<button id="resetar" class="btn-light"><i class="fa fa-refresh"></i> Resetar</button>
+			
+			<button id="cancelar" class="btn-light"><i class="fa fa-times"></i> Cancelar</button>
+			
+
+		</form>
+
+	</div>
+
+	<div class="column5">
+		<form id="anexar">
+			<h4>Anexar arquivos</h4><br>
+			<div id="lista_anexos">
+
+			<input id="i_file_1" class="file_input" fileUp="1" type="file" hidden>
+			<button fileUp="1" class="file_up btn-light"><i class="fa fa-folder"></i> Selecionar arquivo</button><p id="p_file_1"></p>
+
+			</div>
+			<br>
+			<button id="adicionar_btn_anexo" class="btn-light"><i class="fa fa-plus-circle fa-lg"></i></button>
+			
+		</form>
+	</div>
+	
+</div><!-- container 12-->	
+
+<!-- End Document
+================================================== -->
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+
+		$("#enviar").click(function(){
+			/* Implementar de acordo com a forma
+			 que vai ser recebido pelo backend*/
+			 window.location.href = "./novo-ticket-sucesso.html"
+			return false;		
+		});
+
+		$("#resetar").click(function(e){			
+			$("#assunto").val("");
+			$("#mensagem").val("");
+			$("#setor").val("");
+			return false;
+		});
+
+		$("#cancelar").click(function(){
+			window.location.href = "./index-usuario.html"
+			return false;			
+		});	
+		
+		
+
+
+		/* Referente ao Anexo de arquivos*/
+		$("#lista_anexos").on("click",".file_up",function(){			
+			$(this).attr("fileUp",function(i,val){				
+				$("#i_file_"+val).click();
+			});	
+			return false;
+		});
+	
+
+		$("#lista_anexos").on("change",".file_input",function(){
+			$(this).attr("fileUp",function(i, val){				
+				$("#p_file_"+val).text($(this).val());
+			});	
+			
+		});
+
+		var input_count = 1;
+		$("#adicionar_btn_anexo").click(function(){
+			input_count +=1;
+			var novo_btn = "<br><input id=\"i_file_"+input_count+"\" class=\"file_input\" ";
+			novo_btn += "fileUp=\""+input_count+"\" type=\"file\" hidden>";
+			novo_btn += "<button fileUp=\""+input_count+"\" class=\"file_up btn-light\">";
+			novo_btn +="<i class=\"fa fa-folder\"></i>";
+			novo_btn +=" Selecionar arquivo</button><p id=\"p_file_"+input_count+"\"></p>";
+
+			$("#lista_anexos").append(novo_btn);		
+			return false;
+		});
+
+
+	/* fim do $(document).ready();*/
+	});
+
+</script>
+
+</html>

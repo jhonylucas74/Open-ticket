@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="pt"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="pt"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="pt"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="pt"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Open Ticket</title>
+	<meta name="description" content="">
+	<meta name="author" content="Matheus ">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/1140.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+
+
+  <!-- Fonts
+  ================================================= -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>	
+<div class="container12">
+	<div class="column12">
+		<header>
+			<h2> Open <span>Ticket<span></h2>
+			<ul>
+				<a href="./index.html">
+					<li><h5><i class="fa fa-home"></i> HOME</h5></li>
+				</a>
+				
+				<a href="./login.html">
+					<li><h5><i class="fa fa-sign-in"></i> LOGIN</h5></li>
+				</a>
+
+				<a href="./cadastro-usuario.html">
+					<li><h5><i class="fa fa-users"></i></i>CADASTRO</h5></li>
+				</a>
+			</ul>					
+		</header>
+		<hr class="shadow">
+
+	</div>
+
+	<div class="column12">
+		<form id="cadastro">
+			<!-- No backend ou com javascript é possível alterar o valor do campo span para cada tipo difetente de cadastro-->
+			<h4> Novo cadastro para <span id="tipo-cadastro">usuário<span></h4><br>
+
+			<label>Nome completo</label>
+			<input name="nome" type="text">
+
+			<label>RG</label>
+			<input name="rg" type="text">
+
+			<label>CPF</label>
+			<input name="cpf" type="text">
+
+			<label>Matricula</label>
+			<input name="matricula" type="text">
+
+			<label>Data de nascimento</label>
+			<input name="data-nascimento" type="text" placeholder="26/09/1993">
+
+			<label>Sexo</label>
+
+			<input class="radio-male" type="radio" name="sexo" value="Masculino">
+			<label class="radio-male">Masculino</label><br>
+
+			<input class="radio-female" type="radio" name="sexo" value="Feminino">
+			<label class="radio-female">Feminino</label><br>
+
+			<br>
+			<label>Função</label>
+			<select name="funcao">
+				<option value="professor">Professor</option>
+				<option value="coodenador">Coordenador</option>
+				<option value="assistente administrativo">Assistente administrativo</option>				
+			</select>
+
+			<label>Nome de usuário</label>
+			<input name="nome-usuario" type="text">
+
+			<label>Senha</label>
+			<input name="senha" type="password">
+
+			<label>Comfirme a senha</label>
+			<input name="comfirmar-senha" type="password">
+
+			<label>Email</label>
+			<input type="email">
+
+			<input type="submit" value="Cadastrar">
+		</form>
+	</div>
+	
+</div><!-- container 12-->	
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

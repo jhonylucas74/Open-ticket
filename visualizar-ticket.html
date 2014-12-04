@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="pt"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="pt"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="pt"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="pt"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Open Ticket</title>
+	<meta name="description" content="">
+	<meta name="author" content="Matheus ">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/1140.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+
+
+  <!-- Fonts
+  ================================================= -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- javascript
+  ================================================= -->
+  <script src="./javascripts/jquery.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>	
+<div class="container12">
+	<div class="column12">
+		<header>
+			<h2> Open <span>Ticket<span></h2>
+			<ul>
+				<a href="./index.html">
+					<li><h5><i class="fa fa-home"></i> HOME</h5></li>
+				</a>
+
+				<a href="">
+					<li><h5><i class="fa fa-eye"></i> DASHBOARD</h5></li>
+				</a>
+
+				<a href="./index.html">
+					<li><h5><i class="fa fa-sign-out"></i>SAIR</h5></li>
+				</a>
+			</ul>					
+		</header>
+		<hr class="shadow">
+
+	</div>
+
+	<div class="column12">
+		<h3>Ticket</h3>
+
+		<div id="big-letter">
+		<br>
+			<div class="info-ticket">
+				<p><strong>Funcionário </strong> Lucas Silva</p>
+				<p><strong>Assunto </strong> sem Net</p>
+				<p><strong>Data </strong> 03/12/2014</p>
+			</div>
+			<div class="info-ticket">
+				<p><strong>Setor </strong> T.I</p>
+				<p><strong>IP </strong> 192.0.0.5</p>
+				<p><strong>Ultima mensagem </strong> 03/12/2014</p>
+			</div>
+		</div>
+		<br>
+
+		<h4>Histórico</h4>
+		<div id="history">
+			<ul>
+				<li>Data 23/11/2014</li>
+				<li>Data 22/11/2014</li>
+				<li>Data 21/11/2014</li>
+			</ul>
+		</div>
+		<br>
+
+		<div id="tabs">
+			<ul>
+				<li id="responder" class="tab-open tab">Responder</li>
+				<li id="anotação" class="tab-close tab">Anotação</li>
+				<li id="transferir" class="tab-close tab">Transferir</li>
+			</ul>
+		</div>
+		<div id="tab-content">
+			<!-- o contéudo será carregado aqui -->
+		</div>
+		
+	</div>
+	
+</div><!-- container 12-->	
+
+<!-- End Document
+================================================== -->
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		/* Função para mudar os estados das tabs quando o evento click for acionado. */
+		$(".tab").click(function(){
+			$(".tab").removeClass("tab-open");
+			$(".tab").addClass("tab-close");
+
+			$(this).removeClass("tab-close");
+			$(this).addClass("tab-open");
+		});
+
+		/* Quando disparar o evento, carrega layout da tab.*/
+		$("#responder").click(function(){
+			$.ajax({				
+            	url : "./layouts/_visualizar_responder.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);
+	                getResponder();
+            	}
+            });
+		});
+
+		/* Quando disparar o evento, carrega layout da tab.*/
+		$("#anotação").click(function(){
+			$.ajax({				
+            	url : "./layouts/_visualizar_anotacao.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);
+	                getAnotacao();
+            	}
+            });
+		});
+
+		/* Quando disparar o evento, carrega layout da tab.*/
+		$("#transferir").click(function(){
+			$.ajax({				
+            	url : "./layouts/_visualizar_transferir.html",
+            	dataType: "text",
+            	success : function (data) {
+	                $("#tab-content").html(data);	                
+            	}
+            });
+		});
+
+
+		/* Por padrão chamando o primeiro layout*/
+		$.ajax({				
+        	url : "./layouts/_visualizar_responder.html",
+        	dataType: "text",
+        	success : function (data) {
+                $("#tab-content").html(data);
+                getResponder();
+        	}
+        });
+
+		var msg = "Sua mensagem aqui..";
+		function getResponder(){
+			$("#msg").text(msg);
+		}
+
+		$("#tab-content").on("change","#msg",function(){
+			msg = $("#msg").val();
+		});
+
+
+		var note = "Sua anotação aqui..";
+		function getAnotacao(){
+			$("#note").text(note);
+		}
+
+		$("#tab-content").on("change","#note",function(){
+			note = $("#note").val();
+		});
+
+	});
+</script>
+
+</html>
