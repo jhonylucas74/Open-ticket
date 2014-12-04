@@ -8,7 +8,13 @@
 
 /* #Site Styles
 ================================================== */
-body { background-color: #ffffff; }
+body { 
+	height: 100%;
+	background-color: #ffffff; 
+}
+html {
+	height: 100%;
+}
 
 	body *{
 		font-family: 'Open Sans', sans-serif;
